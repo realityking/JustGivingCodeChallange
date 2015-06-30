@@ -42,6 +42,8 @@ The server defines three endpoints, two for the REST API and one for the base pa
 * **GET localhost:3000/crowdFundingPage** — displays all the fundraisers in JSON format
 * **PUT localhost:3000/pledge/{pledgeAmount}** — submits a pledge from the user, the pledge amount is passed as part of the url
 
+### Bonus points ###
+The server will generate random errors. 10% of the time you should receive a 500 error for the PUT request and that means the pledge was not processed. An optional part of this exercise is dealing with the error in a useful manner.
 
 ## Creating pages ##
 
