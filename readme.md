@@ -26,7 +26,7 @@ You can pick any technology that is relevant for the exercise as long as you are
 * Install node on your computer if you haven't already (http://nodejs.org/)
 * Clone this repository on your computer
 * In the terminal, go to the root directory of the repository
-* Run `npm install` (without the backquotes) to install dependencies
+* Run `npm install` to install dependencies
 * Run `npm start` to run the server
 
 You should now be running the server on port 3000.
