@@ -8,17 +8,15 @@ You need to set up this server and build your page on top of it. If you are not 
 
 We want to see your code!
 
-At JustGiving we are crazy about good front end code and good front end principles. We'd like you to implement an interface from a typical page that you would build, but one that shows us the absolute best of your knowledge, including what you consider to be relevant in the field.
+At JustGiving we are crazy about good front end code and good front end principles. We'd like you to implement a small widget that is similar to what you would build at JG, but one that shows us the absolute best of your knowledge, including what you consider to be relevant in the field.
 
-In the specs folder, you'll find a png with the designs of the crowdfunding widget. We want you to implement that widget. Please submit and retrieve the pages using asynchronous calls to the backend provided.
+In the */specs* folder, you will find a *png* file with the designs of the crowdfunding widget: we want you to implement that widget. Please submit and retrieve the widget data using asynchronous calls to the backend provided.
 
-Even though this is only an exercise, we want to see code that could be on production, so please consider this when making decisions about the project scalability, performance, accessibility and integration, etc.
+Even though this is only an exercise, we want to see code that could be on production, so please consider this when making decisions about the project scalability, performance, accessibility and integration.
 
-Remember this widget could be used on third party websites, so take into account this when making decisions on the technologies that you use and how to implement them to optimise the page in these cases as well.
+Remember this widget could be used on third party websites, so take this into account when making decisions on the technologies that you depend on and in how to optimise the widget for these cases as well.
 
 You can pick any technology that is relevant for the exercise as long as you are prepared to justify your choices.
-
-*One important thing, though, is that we want to see your HTML, CSS and Javascript skills, so chose your libraries wisely to showcase what you know. We want to see **your** code. We discourage you, for instance, from using CSS frameworks.*
 
 *If you don't have time to build everything you’d like, please prioritise the most important aspects and explain how you would implement the rest.*
 
@@ -39,11 +37,12 @@ You should now be running the server on port 3000.
 The server defines three endpoints, two for the REST API and one for the base page of the app.
 
 * **localhost:3000/** — should display a basic page with some very basic HTML
-* **GET localhost:3000/crowdFundingPage** — displays all the fundraisers in JSON format
-* **PUT localhost:3000/pledge/{pledgeAmount}** — submits a pledge from the user, the pledge amount is passed as part of the url
+* **GET localhost:3000/api/crowdFundingPage** — displays all the fundraisers in JSON format
+* **POST localhost:3000/api/pledge/{pledgeAmount}** — submits a pledge from the user, the pledge amount is passed as part of the url
 
-### Bonus points ###
-The server will generate random errors. 10% of the time you should receive a 500 error for the PUT request and that means the pledge was not processed. An optional part of this exercise is dealing with the error in a useful manner.
+### Bonus points (optional) ###
+
+The server is built to generate random errors on the POST request. 10% of the time you will receive a 500 error on the *pledge* endpoint to simulate a server error. As an optional part of this exercise, you can deal with the error in a useful manner.
 
 ## Creating pages ##
 
