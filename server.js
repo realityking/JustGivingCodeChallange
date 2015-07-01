@@ -3,7 +3,6 @@
 var express = require('express'); 
 var app = express();
 var port = process.env.PORT || 3000;
-// var bodyParser = require('body-parser');
 
 /*
  * Mock data
@@ -38,8 +37,6 @@ var randomHttpCode = function(magnitude) {
  * Configure express
  */ 
 app.use(express.static(__dirname + '/assets'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 
 /*
  * Set up routes
@@ -48,7 +45,7 @@ app.get('/', function(req, res){
     res.sendfile(__dirname + "/views/index.html");
 });
 
-app.get('/crowdFundingPage', function(req, res){
+app.get('/api/crowdFundingPage', function(req, res){
     res.json( crowdFundingPage );
 });
 
@@ -61,7 +58,7 @@ app.get('/crowdFundingPage', function(req, res){
  *        ex: { "totalPledged": 5000 }
  *
  */ 
-app.put('/pledge/:pledgeAmount', function(req, res){
+app.post('/api/pledge/:pledgeAmount', function(req, res){
     var httpCode = randomHttpCode();
     var pledgeAmount;
 
