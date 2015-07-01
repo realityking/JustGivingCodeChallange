@@ -18,6 +18,8 @@ Remember this widget could be used on third party websites, so take this into ac
 
 You can pick any technology that is relevant for the exercise as long as you are prepared to justify your choices.
 
+One important thing, though, is that we want to see your HTML, CSS and Javascript skills, so chose your libraries wisely to showcase what you know. We want to see *your* code. We discourage you, for instance, from using CSS frameworks.
+
 *If you don't have time to build everything you’d like, please prioritise the most important aspects and explain how you would implement the rest.*
 
 
