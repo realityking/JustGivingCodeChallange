@@ -22,6 +22,7 @@ One important thing, though, is that we want to see your HTML, CSS and Javascrip
 
 *If you don't have time to build everything you’d like, please prioritise the most important aspects and explain how you would implement the rest.*
 
+Once you have finished, please host your code somewhere in the cloud where we can access it (e.g. a GitHub or Bitbucket account) and email the location to <a href="mailto:James.Adams@justgiving.com">James Adams</a>
 
 ## Setup ##
 
