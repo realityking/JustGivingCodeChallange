@@ -1,4 +1,14 @@
-(function() {
+'use strict';
+
+var _templateObject = _taggedTemplateLiteral(['<div class="pledge-container">\n    <label for="pledge-input" class="sr-only">Pledge amount</label>\n    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" /> <button type="button" id="pledge-button" class="btn btn-pledge">Pledge</button>\n</div>'], ['<div class="pledge-container">\n    <label for="pledge-input" class="sr-only">Pledge amount</label>\n    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" /> <button type="button" id="pledge-button" class="btn btn-pledge">Pledge</button>\n</div>']),
+    _templateObject2 = _taggedTemplateLiteral(['<div class="pledge-container">\n    <div class="pledge-msg">Thanks for your pledge!</div>\n</div>'], ['<div class="pledge-container">\n    <div class="pledge-msg">Thanks for your pledge!</div>\n</div>']),
+    _templateObject3 = _taggedTemplateLiteral(['<div class="pledge-container">\n    <div class="pledge-msg">There was an error, please try again later.</div>\n</div>'], ['<div class="pledge-container">\n    <div class="pledge-msg">There was an error, please try again later.</div>\n</div>']),
+    _templateObject4 = _taggedTemplateLiteral(['<img src="/images/', '" width="498" height="280" alt="" />\n    <p class="story-text">', '</p>\n    <div class="meter">\n        <div class="bar" style="width: ', '%;"></div>\n    </div>\n    <p class="meter-info meter-info-left"><span class="big">', '</span> pledged of <strong>', '</strong> funding target</p>\n    <p class="meter-info meter-info-right"><strong class="big">', '</strong> funded</p>\n    <div class="clearfix"></div>'], ['<img src="/images/', '" width="498" height="280" alt="" />\n    <p class="story-text">', '</p>\n    <div class="meter">\n        <div class="bar" style="width: ', '%;"></div>\n    </div>\n    <p class="meter-info meter-info-left"><span class="big">', '</span> pledged of <strong>', '</strong> funding target</p>\n    <p class="meter-info meter-info-right"><strong class="big">', '</strong> funded</p>\n    <div class="clearfix"></div>']),
+    _templateObject5 = _taggedTemplateLiteral(['<div class="project-owner-container clearfix">\n        <div class="project-owner-wrapper">\n            <img src="/images/', '" height="50" width="50" alt="" class="avatar" />\n            <p class="owner-name"><span class="text-light owner-title">Project owner</span>', '</p>\n        </div>\n    </div>\n    <div class="footer">\n        <p class="footer-text">Create your own crowdfunding project and make a difference in your community</p>\n        <a class="btn btn-started" href="https://home.justgiving.com" target="_blank">Get started</a>\n        <p class="text-light">Powered by</p>\n        <img src="/images/justgiving_logo.svg" alt="JustGiving™" width="210" />\n    </div>'], ['<div class="project-owner-container clearfix">\n        <div class="project-owner-wrapper">\n            <img src="/images/', '" height="50" width="50" alt="" class="avatar" />\n            <p class="owner-name"><span class="text-light owner-title">Project owner</span>', '</p>\n        </div>\n    </div>\n    <div class="footer">\n        <p class="footer-text">Create your own crowdfunding project and make a difference in your community</p>\n        <a class="btn btn-started" href="https://home.justgiving.com" target="_blank">Get started</a>\n        <p class="text-light">Powered by</p>\n        <img src="/images/justgiving_logo.svg" alt="JustGiving™" width="210" />\n    </div>']);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+(function () {
     // HTML Escape helper utility
     // Thanks to Andrea Giammarchi
     function replaceHtmlSpecialChar(m) {
@@ -30,7 +40,7 @@
     function submitPledge(amount) {
         return fetch('/api/pledge/' + amount, {
             method: 'POST'
-        }).then(function(response) {
+        }).then(function (response) {
             if (response.status >= 200 && response.status < 300) {
                 return response.json();
             }
@@ -50,20 +60,13 @@
 
     function createMainHtml(state) {
         if (state === 'pledge') {
-            return html`<div class="pledge-container">
-    <label for="pledge-input" class="sr-only">Pledge amount</label>
-    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" /> <button type="button" id="pledge-button" class="btn btn-pledge">Pledge</button>
-</div>`;
+            return html(_templateObject);
         }
         if (state === 'success') {
-            return html`<div class="pledge-container">
-    <div class="pledge-msg">Thanks for your pledge!</div>
-</div>`;
+            return html(_templateObject2);
         }
         if (state === 'error') {
-            return html`<div class="pledge-container">
-    <div class="pledge-msg">There was an error, please try again later.</div>
-</div>`;
+            return html(_templateObject3);
         }
     }
 
@@ -74,39 +77,20 @@
         var pledgePercentage = percentFormatter.format(rawPercent);
         var cssPercent = Math.round(rawPercent * 100);
 
-        var header = html`<img src="/images/${data.mainImage}" width="498" height="280" alt="" />
-    <p class="story-text">${data.story}</p>
-    <div class="meter">
-        <div class="bar" style="width: ${cssPercent}%;"></div>
-    </div>
-    <p class="meter-info meter-info-left"><span class="big">${totalPledged}</span> pledged of <strong>${target}</strong> funding target</p>
-    <p class="meter-info meter-info-right"><strong class="big">${pledgePercentage}</strong> funded</p>
-    <div class="clearfix"></div>`;
+        var header = html(_templateObject4, data.mainImage, data.story, cssPercent, totalPledged, target, pledgePercentage);
 
         var main = createMainHtml(data.state);
 
-        var footer = html`<div class="project-owner-container clearfix">
-        <div class="project-owner-wrapper">
-            <img src="/images/${data.ownerAvatar}" height="50" width="50" alt="" class="avatar" />
-            <p class="owner-name"><span class="text-light owner-title">Project owner</span>${data.owner}</p>
-        </div>
-    </div>
-    <div class="footer">
-        <p class="footer-text">Create your own crowdfunding project and make a difference in your community</p>
-        <a class="btn btn-started" href="https://home.justgiving.com" target="_blank">Get started</a>
-        <p class="text-light">Powered by</p>
-        <img src="/images/justgiving_logo.svg" alt="JustGiving™" width="210" />
-    </div>`;
+        var footer = html(_templateObject5, data.ownerAvatar, data.owner);
 
-        return '<div class="container">' + header + main + footer + '</div>'
+        return '<div class="container">' + header + main + footer + '</div>';
     }
 
-    var pagePromise = fetch('/api/crowdFundingPage ')
-        .then(function decodeJson(response) {
-            return response.json();
-        });
-    document.addEventListener("DOMContentLoaded", function() {
-        pagePromise.then(function pageSuccess(data){
+    var pagePromise = fetch('/api/crowdFundingPage ').then(function decodeJson(response) {
+        return response.json();
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        pagePromise.then(function pageSuccess(data) {
             data.state = 'pledge';
             var container = document.getElementById('pledge-placeholder');
             container.innerHTML = createHtml(data);
@@ -114,17 +98,16 @@
             var pledgeInput = document.getElementById('pledge-input');
             var pledgeButton = document.getElementById('pledge-button');
             function onPledge() {
-                submitPledge(pledgeInput.value)
-                    .then(function pledgeSuccess(response) {
-                        data.state = 'success';
-                        data.totalPledged = response.totalPledged;
-                        pledgeButton.removeEventListener('click', onPledge);
-                        container.innerHTML = createHtml(data);
-                    }, function pledgeError() {
-                        data.state = 'error';
-                        pledgeButton.removeEventListener('click', onPledge);
-                        container.innerHTML = createHtml(data);
-                    });
+                submitPledge(pledgeInput.value).then(function pledgeSuccess(response) {
+                    data.state = 'success';
+                    data.totalPledged = response.totalPledged;
+                    pledgeButton.removeEventListener('click', onPledge);
+                    container.innerHTML = createHtml(data);
+                }, function pledgeError() {
+                    data.state = 'error';
+                    pledgeButton.removeEventListener('click', onPledge);
+                    container.innerHTML = createHtml(data);
+                });
             }
 
             pledgeButton.addEventListener('click', onPledge);
@@ -132,5 +115,4 @@
             // Ups, can't load data
         });
     });
-}());
-
+})();

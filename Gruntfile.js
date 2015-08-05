@@ -20,6 +20,14 @@ module.exports = function(grunt) {
             }
         },
 
+        babel: {
+            dist: {
+                files: {
+                    'assets/javascript/main.js': 'src/javascript/main.js'
+                }
+            }
+        },
+
         sass: {
             options: {
                 sourceComments: true
@@ -38,7 +46,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('js', [
-
+        'babel'
     ]);
 
     grunt.registerTask('build', [
