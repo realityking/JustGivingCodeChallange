@@ -430,7 +430,7 @@ body {
   background-color: white; }
 
 /* line 48, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
-.main-text {
+.story-text {
   text-align: center;
   font-size: 1.5rem;
   margin-left: 1.8rem;
@@ -511,51 +511,69 @@ body {
 .text-light {
   color: #A1A6A7; }
 
-/* line 126, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 127, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+.meter,
+.bar {
+  height: 10px;
+  border-radius: 5px; }
+
+/* line 132, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .meter {
   background-color: #EAEAEA;
-  height: 10px;
-  border-radius: 5px;
   margin-left: 1.5rem;
   margin-right: 1.5rem; }
 
-/* line 134, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 138, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .bar {
   background-color: #C300B5; }
 
-/* line 138, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 142, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .meter-info {
   color: #C300B5;
   font-size: 0.8rem;
   margin-top: 0.1rem; }
 
-/* line 144, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 148, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .meter-info-left {
   float: left;
   margin-left: 1.5rem;
   font-weight: lighter; }
 
-/* line 150, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 154, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .meter-info-right {
   float: right;
   margin-right: 1.5rem;
   font-weight: lighter; }
 
-/* line 156, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 160, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .big {
   font-size: 2em;
   display: block; }
 
-/* line 161, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 165, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .pledge-container {
   text-align: center;
   margin-top: 0.5rem; }
 
-/* line 167, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 170, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+.pledge-msg {
+  border: 1px solid #C300B5;
+  color: #C300B5;
+  background-color: #FBF4FB;
+  font-weight: lighter;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  font-size: 1.2rem;
+  height: 3rem;
+  vertical-align: middle;
+  line-height: 2.5;
+  border-radius: 3px; }
+
+/* line 184, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .project-owner-container {
   margin-top: 2rem; }
 
-/* line 171, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 188, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .pledge-input {
   width: 4rem;
   height: 3rem;
@@ -563,21 +581,21 @@ body {
   padding-left: 10px;
   font-size: 1.3rem; }
 
-/* line 179, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 196, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .project-owner-container {
   text-align: center; }
 
-/* line 184, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 200, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .project-owner-wrapper {
   display: inline-block; }
 
-/* line 188, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 204, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .owner-title {
   display: block;
   font-weight: lighter;
   font-size: 1rem; }
 
-/* line 194, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 210, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .owner-name {
   float: left;
   margin-top: 0;
@@ -585,20 +603,20 @@ body {
   line-height: 1.5rem;
   font-size: 1.1rem; }
 
-/* line 202, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 218, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .avatar {
   border-radius: 50%;
   float: left;
   margin-right: 0.3rem; }
 
-/* line 208, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 224, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .footer {
   border-top: 1px solid #EAEAEA;
   text-align: center;
   padding-bottom: 2.5rem;
   margin-top: 1rem; }
 
-/* line 215, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
+/* line 231, /Users/rouven/Justgiving.FrontEnd.CodeChallenge/src/css/styles.scss */
 .footer-text {
   font-weight: lighter;
   font-size: 1.2rem;

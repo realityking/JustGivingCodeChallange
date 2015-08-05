@@ -1,17 +1,19 @@
 'use strict';
 
-var express = require('express'); 
+var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 
 /*
  * Mock data
- */ 
+ */
 var crowdFundingPage = {
     name: "Playground in Hackney Wick",
-    totalPledged: 700,
-    target: 2000,
+    totalPledged: 2000,
+    target: 3000,
     owner: "Holly Groom",
+    ownerAvatar: "avatar.jpg",
+    mainImage: "crowdfunding_image.jpg",
     story: "We are raising £3000 to build an adventure playground in Hackney Wick because the kids have nowhere to play"
 };
 
@@ -23,19 +25,19 @@ var randomHttpCode = function(magnitude) {
     var rand;
 
     magnitude = magnitude || 10;
-    rand = Math.floor( Math.random()*10 ); 
+    rand = Math.floor( Math.random()*10 );
 
     if(rand == 0) {
         httpCode = 500;
     }
-    
+
     return httpCode;
 };
 
 
 /*
  * Configure express
- */ 
+ */
 app.use(express.static(__dirname + '/assets'));
 
 /*
@@ -52,12 +54,12 @@ app.get('/api/crowdFundingPage', function(req, res){
 /*
  * Updates the pledged amount by the amount specified
  * params:
- *        pledgeAmount: the amount pledged by the user 
+ *        pledgeAmount: the amount pledged by the user
  * response body:
  *        the total amount pledged so far
  *        ex: { "totalPledged": 5000 }
  *
- */ 
+ */
 app.post('/api/pledge/:pledgeAmount', function(req, res){
     var httpCode = randomHttpCode();
     var pledgeAmount;

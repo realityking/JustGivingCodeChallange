@@ -45,7 +45,7 @@ body {
   background-color: white;
 }
 
-.main-text {
+.story-text {
   text-align: center;
   font-size: 1.5rem;
   margin-left: 1.8rem;
@@ -123,10 +123,14 @@ body {
   color: #A1A6A7;
 }
 
-.meter {
-  background-color: #EAEAEA;
+.meter,
+.bar {
   height: 10px;
   border-radius: 5px;
+}
+
+.meter {
+  background-color: #EAEAEA;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
@@ -161,6 +165,20 @@ body {
 .pledge-container {
   text-align: center;
   margin-top: 0.5rem;
+}
+
+.pledge-msg {
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  background-color: #FBF4FB;
+  font-weight: lighter;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  font-size: 1.2rem;
+  height: 3rem;
+  vertical-align: middle;
+  line-height: (3 / 1.2);
+  border-radius: 3px;
 }
 
 .project-owner-container {
