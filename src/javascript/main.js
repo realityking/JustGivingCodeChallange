@@ -2,7 +2,7 @@
     // HTML Escape helper utility
     // Thanks to Andrea Giammarchi
     function replaceHtmlSpecialChar(m) {
-        var oEscape = {
+        const oEscape = {
             '&': '&amp;',
             '<': '&lt;',
             '>': '&gt;',
@@ -17,10 +17,9 @@
     }
 
     // Tagged template function
-    function html(pieces) {
-        var result = pieces[0];
-        var substitutions = [].slice.call(arguments, 1);
-        for (var i = 0; i < substitutions.length; ++i) {
+    function html(pieces, ...substitutions) {
+        let result = pieces[0];
+        for (let i = 0; i < substitutions.length; ++i) {
             result += escapeHtml(substitutions[i]) + pieces[i + 1];
         }
 
@@ -39,11 +38,11 @@
         });
     }
 
-    var currencyFormatter = new Intl.NumberFormat('en-GB', {
+    const currencyFormatter = new Intl.NumberFormat('en-GB', {
         style: 'currency',
         currency: 'GBP'
     });
-    var percentFormatter = new Intl.NumberFormat('en-GB', {
+    const percentFormatter = new Intl.NumberFormat('en-GB', {
         style: 'percent',
         maximumFractionDigits: 0
     });
@@ -68,13 +67,13 @@
     }
 
     function createHtml(data) {
-        var totalPledged = currencyFormatter.format(data.totalPledged);
-        var target = currencyFormatter.format(data.target);
-        var rawPercent = data.totalPledged / data.target;
-        var pledgePercentage = percentFormatter.format(rawPercent);
-        var cssPercent = Math.round(rawPercent * 100);
+        const totalPledged = currencyFormatter.format(data.totalPledged);
+        const target = currencyFormatter.format(data.target);
+        const rawPercent = data.totalPledged / data.target;
+        const pledgePercentage = percentFormatter.format(rawPercent);
+        const cssPercent = Math.round(rawPercent * 100);
 
-        var header = html`<img src="/images/${data.mainImage}" width="498" height="280" alt="" />
+        const header = html`<img src="/images/${data.mainImage}" width="498" height="280" alt="" />
     <p class="story-text">${data.story}</p>
     <div class="meter">
         <div class="bar" style="width: ${cssPercent}%;"></div>
@@ -83,9 +82,9 @@
     <p class="meter-info meter-info-right"><strong class="big">${pledgePercentage}</strong> funded</p>
     <div class="clearfix"></div>`;
 
-        var main = createMainHtml(data.state);
+        const main = createMainHtml(data.state);
 
-        var footer = html`<div class="project-owner-container clearfix">
+        const footer = html`<div class="project-owner-container clearfix">
         <div class="project-owner-wrapper">
             <img src="/images/${data.ownerAvatar}" height="50" width="50" alt="" class="avatar" />
             <p class="owner-name"><span class="text-light owner-title">Project owner</span>${data.owner}</p>
@@ -101,35 +100,40 @@
         return '<div class="container">' + header + main + footer + '</div>'
     }
 
-    var pagePromise = fetch('/api/crowdFundingPage ')
+    const pagePromise = fetch('/api/crowdFundingPage ')
         .then(function decodeJson(response) {
             return response.json();
         });
     document.addEventListener("DOMContentLoaded", function() {
         pagePromise.then(function pageSuccess(data){
             data.state = 'pledge';
-            var container = document.getElementById('pledge-placeholder');
+            const container = document.getElementById('pledge-placeholder');
             container.innerHTML = createHtml(data);
 
-            var pledgeInput = document.getElementById('pledge-input');
-            var pledgeButton = document.getElementById('pledge-button');
+            let pledgeInput = document.getElementById('pledge-input');
+            let pledgeButton = document.getElementById('pledge-button');
+
+            function refreshHtml(data) {
+                pledgeButton.removeEventListener('click', onPledge);
+                container.innerHTML = createHtml(data);
+                pledgeInput = pledgeButton = null;
+            }
+
             function onPledge() {
                 submitPledge(pledgeInput.value)
                     .then(function pledgeSuccess(response) {
                         data.state = 'success';
                         data.totalPledged = response.totalPledged;
-                        pledgeButton.removeEventListener('click', onPledge);
-                        container.innerHTML = createHtml(data);
+                        refreshHtml(data);
                     }, function pledgeError() {
                         data.state = 'error';
-                        pledgeButton.removeEventListener('click', onPledge);
-                        container.innerHTML = createHtml(data);
+                        refreshHtml(data);
                     });
             }
 
             pledgeButton.addEventListener('click', onPledge);
         }, function pageError(reason) {
-            // Ups, can't load data
+            // Ups, can't load data, do nothing
         });
     });
 }());

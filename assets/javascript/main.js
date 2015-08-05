@@ -29,7 +29,11 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
     // Tagged template function
     function html(pieces) {
         var result = pieces[0];
-        var substitutions = [].slice.call(arguments, 1);
+
+        for (var _len = arguments.length, substitutions = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+            substitutions[_key - 1] = arguments[_key];
+        }
+
         for (var i = 0; i < substitutions.length; ++i) {
             result += escapeHtml(substitutions[i]) + pieces[i + 1];
         }
@@ -97,22 +101,27 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
             var pledgeInput = document.getElementById('pledge-input');
             var pledgeButton = document.getElementById('pledge-button');
+
+            function refreshHtml(data) {
+                pledgeButton.removeEventListener('click', onPledge);
+                container.innerHTML = createHtml(data);
+                pledgeInput = pledgeButton = null;
+            }
+
             function onPledge() {
                 submitPledge(pledgeInput.value).then(function pledgeSuccess(response) {
                     data.state = 'success';
                     data.totalPledged = response.totalPledged;
-                    pledgeButton.removeEventListener('click', onPledge);
-                    container.innerHTML = createHtml(data);
+                    refreshHtml(data);
                 }, function pledgeError() {
                     data.state = 'error';
-                    pledgeButton.removeEventListener('click', onPledge);
-                    container.innerHTML = createHtml(data);
+                    refreshHtml(data);
                 });
             }
 
             pledgeButton.addEventListener('click', onPledge);
         }, function pageError(reason) {
-            // Ups, can't load data
+            // Ups, can't load data, do nothing
         });
     });
 })();
