@@ -49,10 +49,10 @@
 
     function createMainHtml(state) {
         if (state === 'pledge') {
-            return html`<div class="pledge-container">
+            return html`<form class="pledge-container" id="pledge-form">
     <label for="pledge-input" class="sr-only">Pledge amount</label>
-    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" /> <button type="button" id="pledge-button" class="btn btn-pledge">Pledge</button>
-</div>`;
+    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" required="required" /> <button class="btn btn-pledge">Pledge</button>
+</form>`;
         }
         if (state === 'success') {
             return html`<div class="pledge-container">
@@ -111,15 +111,16 @@
             container.innerHTML = createHtml(data);
 
             let pledgeInput = document.getElementById('pledge-input');
-            let pledgeButton = document.getElementById('pledge-button');
+            let pledgeForm = document.getElementById('pledge-form');
 
             function refreshHtml(data) {
-                pledgeButton.removeEventListener('click', onPledge);
+                pledgeForm.removeEventListener('submit', onPledge);
                 container.innerHTML = createHtml(data);
-                pledgeInput = pledgeButton = null;
+                pledgeInput = pledgeForm = null;
             }
 
-            function onPledge() {
+            function onPledge(event) {
+                event.preventDefault();
                 submitPledge(pledgeInput.value)
                     .then(function pledgeSuccess(response) {
                         data.state = 'success';
@@ -131,7 +132,7 @@
                     });
             }
 
-            pledgeButton.addEventListener('click', onPledge);
+            pledgeForm.addEventListener('submit', onPledge);
         }, function pageError(reason) {
             // Ups, can't load data, do nothing
         });

@@ -1,6 +1,6 @@
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['<div class="pledge-container">\n    <label for="pledge-input" class="sr-only">Pledge amount</label>\n    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" /> <button type="button" id="pledge-button" class="btn btn-pledge">Pledge</button>\n</div>'], ['<div class="pledge-container">\n    <label for="pledge-input" class="sr-only">Pledge amount</label>\n    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" /> <button type="button" id="pledge-button" class="btn btn-pledge">Pledge</button>\n</div>']),
+var _templateObject = _taggedTemplateLiteral(['<form class="pledge-container" id="pledge-form">\n    <label for="pledge-input" class="sr-only">Pledge amount</label>\n    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" required="required" /> <button class="btn btn-pledge">Pledge</button>\n</form>'], ['<form class="pledge-container" id="pledge-form">\n    <label for="pledge-input" class="sr-only">Pledge amount</label>\n    <input type="text" placeholder="£20" class="pledge-input" id="pledge-input" required="required" /> <button class="btn btn-pledge">Pledge</button>\n</form>']),
     _templateObject2 = _taggedTemplateLiteral(['<div class="pledge-container">\n    <div class="pledge-msg">Thanks for your pledge!</div>\n</div>'], ['<div class="pledge-container">\n    <div class="pledge-msg">Thanks for your pledge!</div>\n</div>']),
     _templateObject3 = _taggedTemplateLiteral(['<div class="pledge-container">\n    <div class="pledge-msg">There was an error, please try again later.</div>\n</div>'], ['<div class="pledge-container">\n    <div class="pledge-msg">There was an error, please try again later.</div>\n</div>']),
     _templateObject4 = _taggedTemplateLiteral(['<img src="/images/', '" width="498" height="280" alt="" />\n    <p class="story-text">', '</p>\n    <div class="meter">\n        <div class="bar" style="width: ', '%;"></div>\n    </div>\n    <p class="meter-info meter-info-left"><span class="big">', '</span> pledged of <strong>', '</strong> funding target</p>\n    <p class="meter-info meter-info-right"><strong class="big">', '</strong> funded</p>\n    <div class="clearfix"></div>'], ['<img src="/images/', '" width="498" height="280" alt="" />\n    <p class="story-text">', '</p>\n    <div class="meter">\n        <div class="bar" style="width: ', '%;"></div>\n    </div>\n    <p class="meter-info meter-info-left"><span class="big">', '</span> pledged of <strong>', '</strong> funding target</p>\n    <p class="meter-info meter-info-right"><strong class="big">', '</strong> funded</p>\n    <div class="clearfix"></div>']),
@@ -100,15 +100,16 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
             container.innerHTML = createHtml(data);
 
             var pledgeInput = document.getElementById('pledge-input');
-            var pledgeButton = document.getElementById('pledge-button');
+            var pledgeForm = document.getElementById('pledge-form');
 
             function refreshHtml(data) {
-                pledgeButton.removeEventListener('click', onPledge);
+                pledgeForm.removeEventListener('submit', onPledge);
                 container.innerHTML = createHtml(data);
-                pledgeInput = pledgeButton = null;
+                pledgeInput = pledgeForm = null;
             }
 
-            function onPledge() {
+            function onPledge(event) {
+                event.preventDefault();
                 submitPledge(pledgeInput.value).then(function pledgeSuccess(response) {
                     data.state = 'success';
                     data.totalPledged = response.totalPledged;
@@ -119,7 +120,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
                 });
             }
 
-            pledgeButton.addEventListener('click', onPledge);
+            pledgeForm.addEventListener('submit', onPledge);
         }, function pageError(reason) {
             // Ups, can't load data, do nothing
         });
