@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         autoprefixer: {
             options: {
-                browsers: ['last 2 version', 'Firefox ESR', 'ie 9']
+                browsers: ['last 3 version', 'Firefox ESR', 'ie 9']
             },
             dist: {
                 files: [
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 
         sass: {
             options: {
-                sourceComments: true
+                sourceComments: false
             },
             dist: {
                 files: {
